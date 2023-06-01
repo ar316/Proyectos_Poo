@@ -1,39 +1,64 @@
-import javax.swing.JOptionPane;
+import java.awt.EventQueue;
 
-public class App {
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import java.awt.Label;
 
-    static int selec = -1;
-    public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
+public class App extends JFrame {
 
+	private JPanel contentPane;
+	private JTextField textField;
+	private JPanel panel;
+	private JPanel panel_1;
+	private Label label;
 
-        Account arnold = new Account("3173121433",0);
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					App frame = new App();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
+	/**
+	 * Create the frame.
+	 */
+	public App() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 563, 384);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
+		setContentPane(contentPane);
+		
+		panel_1 = new JPanel();
+		contentPane.add(panel_1);
+		
+		textField = new JTextField();
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		JButton btnAadirEvento = new JButton("añadir evento");
+		contentPane.add(btnAadirEvento);
 
-        while (selec != 0){
-            String lectura = JOptionPane.showInputDialog(null,"************************\nElige opción:\n1.- Ver informacion de la cuenta " +
-						"\n2.- consiganar\n" +
-						"3.- retirar dinero\n" +
-						"0.- Salir\n************************");
-				//Recoger una variable por consola
-				selec = Integer.parseInt(lectura); 
-
-                switch(selec){
-                    case 1 :
-                            JOptionPane.showMessageDialog(null, arnold.toString(), " informacion de la Cuenta ", selec);
-                            break;
-                    case 2: 
-                            String monto =JOptionPane.showInputDialog(null, "Digite al cantidad de dinero que quuiere agregar a la cuenta ");
-                            float amount = Float.parseFloat(monto);
-                    arnold.credit("3173121433", amount);
-                    break;
-
-                    case 3:
-                            break;
-                            
-                            
-                }
-        }
-    }
+        btnAadirEvento.addActionListener(null);
+		
+		label = new Label("New label");
+		contentPane.add(label);
+		
+		panel = new JPanel();
+		contentPane.add(panel);
+	}
 }
